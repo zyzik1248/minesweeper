@@ -42,7 +42,8 @@ const Minesweeper = () => {
           <Board
             width={30}
             height={16}
-            mines={10}
+            mines={99}
+            setFlags={setFlags}
             setIsLose={setIsLose}
             isLose={isLose}
           /> : null

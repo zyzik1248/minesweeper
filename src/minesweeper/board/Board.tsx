@@ -9,6 +9,7 @@ type BoardProps = {
   width: number;
   height: number;
   mines: number;
+  setFlags: (flags: number) => void;
   setIsLose: (isLose: boolean) => void;
   isLose: boolean;
 }
@@ -24,7 +25,7 @@ interface FieldValue {
   isQuestionMark: boolean;
 }
 
-const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose, isLose }) => {
+const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setFlags, setIsLose, isLose }) => {
   const [fields, setFields] = useState<Fields>({ fields: [] })
   const [windowWidth, setWindowWidth] = useState(0)
   const [windowHeight, setWindowHeight] = useState(0)
@@ -59,6 +60,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose,
         }
       }
       setFields({ fields: tab })
+      setFlags(detectFlag())
     }
   }
 
@@ -120,23 +122,41 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose,
     }
   }
 
-  const handleContextMenu = (event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+  const detectFlag = (): number => {
+    let flags = mines;
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        if (fields.fields[i][j].isFlag) {
+          flags--;
+        }
+      }
+    }
+    return flags;
   }
 
   const marking = (x: number, y: number) => {
     const tab = fields.fields;
+    let flags = detectFlag();
     if (!tab[x][y].isOpen) {
       if (tab[x][y].isFlag) {
         tab[x][y].isQuestionMark = true;
         tab[x][y].isFlag = false;
+        flags++;
       } else if (tab[x][y].isQuestionMark) {
         tab[x][y].isQuestionMark = false;
+      } else if (flags === 0) {
+        tab[x][y].isQuestionMark = true;
       } else {
         tab[x][y].isFlag = true;
+        flags--;
       }
       setFields({ fields: tab })
+      setFlags(flags)
     }
+  }
+
+  const handleContextMenu = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
   }
 
   return (
