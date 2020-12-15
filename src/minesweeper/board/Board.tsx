@@ -86,7 +86,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose,
     x - 1 >= 0 && tab[x - 1][y].isFlag && count++;
     x - 1 >= 0 && y - 1 >= 0 && tab[x - 1][y - 1].isFlag && count++;
 
-    return tab[x][y].value == count;
+    return tab[x][y].value === count;
   }
 
   const findBlank = (tab: FieldValue[][], x: number, y: number): FieldValue[][] => {
