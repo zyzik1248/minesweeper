@@ -18,6 +18,7 @@ type Fields = {
 interface FieldValue {
   value: number;
   isOpen: boolean;
+  isFlag: boolean;
 }
 
 const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
@@ -29,24 +30,26 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
 
   const click = (x: number, y: number) => {
     let tab = fields.fields.slice();
-    if (!tab[x][y].isOpen) {
-      discoverFields(x, y, tab)
+    if (!tab[x][y].isFlag) {
+      if (!tab[x][y].isOpen) {
+        discoverFields(x, y, tab)
+      }
+      else {
+        discoverFields(x - 1, y + 1, tab)
+        discoverFields(x - 1, y, tab)
+        discoverFields(x - 1, y - 1, tab)
+        discoverFields(x, y + 1, tab)
+        discoverFields(x, y - 1, tab)
+        discoverFields(x + 1, y + 1, tab)
+        discoverFields(x + 1, y, tab)
+        discoverFields(x + 1, y - 1, tab)
+      }
+      setFields({ fields: tab })
     }
-    else {
-      discoverFields(x - 1, y + 1, tab)
-      discoverFields(x - 1, y, tab)
-      discoverFields(x - 1, y - 1, tab)
-      discoverFields(x, y + 1, tab)
-      discoverFields(x, y - 1, tab)
-      discoverFields(x + 1, y + 1, tab)
-      discoverFields(x + 1, y, tab)
-      discoverFields(x + 1, y - 1, tab)
-    }
-    setFields({ fields: tab })
   }
 
   const discoverFields = (x: number, y: number, tab: FieldValue[][]) => {
-    if (x >= 0 && y >= 0 && x < height && y < width) {
+    if (x >= 0 && y >= 0 && x < height && y < width && !tab[x][y].isFlag) {
       tab[x][y].isOpen = true;
       if (tab[x][y].value === 0) {
         tab = findBlank(tab, x, y);
@@ -80,6 +83,23 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
         blankNeighbors.push({ x, y })
       }
       tab[x][y].isOpen = true;
+      tab[x][y].isFlag = false;
+    }
+  }
+
+  const handleContextMenu = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+  }
+
+  const setFlag = (x: number, y: number) => {
+    const tab = fields.fields;
+    if (!tab[x][y].isOpen) {
+      if (tab[x][y].isFlag) {
+        tab[x][y].isFlag = false;
+      } else {
+        tab[x][y].isFlag = true;
+      }
+      setFields({ fields: tab })
     }
   }
 
@@ -87,6 +107,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
     <div>
       <BoardStyled
         width={width}
+        onContextMenu={(event: React.MouseEvent<HTMLElement>) => handleContextMenu(event)}
       >
         {fields.fields.map((row, x) => (
           <>
@@ -97,7 +118,9 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
                 x={x}
                 y={y}
                 isOpen={el.isOpen}
+                isFlag={el.isFlag}
                 click={click}
+                setFlag={setFlag}
               />
             ))}
           </>
