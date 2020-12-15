@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 
-import { FieldStyled } from './Field.css'
+import { FieldStyled, Content } from './Field.css'
 
 type FieldProps = {
   value: number;
@@ -25,12 +25,15 @@ const Field: FunctionComponent<FieldProps> = ({ value, x, y, isOpen, isFlag, isQ
 
   return (
     <FieldStyled
+      isOpen={isOpen}
       onClick={handleClick}
       onContextMenu={handleFlag}
     >
-      {isOpen && value}
-      {!isOpen && isFlag && 'x'}
-      {!isOpen && isQuestionMark && '?'}
+      <Content>
+        {isOpen && value}
+        {!isOpen && isFlag && 'x'}
+        {!isOpen && isQuestionMark && '?'}
+      </Content>
     </FieldStyled>
   )
 };

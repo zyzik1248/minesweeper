@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
 
 import Field from './../field/Field'
-import { BoardStyled } from './Board.css'
+import { BoardStyled, Wrapper } from './Board.css'
 import { generateFields } from './boardGenerator'
 import { Position } from './position'
 
@@ -24,10 +24,19 @@ interface FieldValue {
 
 const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
   const [fields, setFields] = useState<Fields>({ fields: [] })
+  const [windowWidth, setWindowWidth] = useState(0)
+  const [windowHeight, setWindowHeight] = useState(0)
 
   useEffect(() => {
     setFields({ fields: generateFields(width, height, mines) })
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
   }, [width, height, mines]);
+
+  const setScreenSize = () => {
+    setWindowWidth(window.innerWidth);
+    setWindowHeight(window.innerHeight);
+  }
 
   const click = (x: number, y: number) => {
     let tab = fields.fields.slice();
@@ -110,9 +119,12 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
   }
 
   return (
-    <div>
+    <Wrapper>
       <BoardStyled
+        height={height}
         width={width}
+        windowWidth={windowWidth}
+        windowHeight={windowHeight}
         onContextMenu={(event: React.MouseEvent<HTMLElement>) => handleContextMenu(event)}
       >
         {fields.fields.map((row, x) => (
@@ -133,7 +145,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
           </>
         ))}
       </BoardStyled>
-    </div>
+    </Wrapper>
   )
 }
 
