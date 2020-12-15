@@ -8,28 +8,45 @@ import { Wrapper, Menu } from './Minesweeper.css'
 
 const Minesweeper = () => {
   const [isLose, setIsLose] = useState(false)
+  const [isRefresh, setIsRefresh] = useState(false)
+  const [flags, setFlags] = useState(99)
+
+  const restart = () => {
+    setIsLose(false)
+    setFlags(99)
+    setIsRefresh(true)
+
+    setTimeout(() => {
+      setIsRefresh(false)
+    }, 10);
+  }
 
   return (
     <Wrapper>
       <Menu>
         <IoMdFlag />
         <span style={{ fontSize: 20, marginRight: 30 }}>
-          99
+          {flags}
         </span>
         {
           isLose ?
-            (<BiSad style={{ cursor: 'pointer' }} />) :
-            (<BiSmile style={{ cursor: 'pointer' }} />)
+            (<BiSad style={{ cursor: 'pointer' }} onClick={restart} />) :
+            (<BiSmile style={{ cursor: 'pointer' }} onClick={restart} />)
         }
-        <Timer />
+        <Timer
+          isRefresh={isRefresh}
+        />
       </Menu>
-      <Board
-        width={30}
-        height={16}
-        mines={10}
-        setIsLose={setIsLose}
-        isLose={isLose}
-      />
+      {
+        !isRefresh ?
+          <Board
+            width={30}
+            height={16}
+            mines={10}
+            setIsLose={setIsLose}
+            isLose={isLose}
+          /> : null
+      }
     </Wrapper>
   )
 }
