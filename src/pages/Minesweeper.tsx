@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Board from '../minesweeper/board/Board'
 import Timer from './../components/Timer'
 import { IoMdFlag } from 'react-icons/io'
 import { BiSmile, BiSad } from 'react-icons/bi'
 import { Wrapper, Menu } from './Minesweeper.css'
+import Modal from './../components/modal/Modal'
 
 const Minesweeper = () => {
   const [isLose, setIsLose] = useState(false)
@@ -12,6 +13,15 @@ const Minesweeper = () => {
   const [winTime, setWinTime] = useState(0)
   const [isRefresh, setIsRefresh] = useState(false)
   const [flags, setFlags] = useState(10)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  useEffect(() => {
+    if (isWin) {
+      setTimeout(() => {
+        setIsOpenModal(true)
+      }, 500);
+    }
+  }, [isWin]);
 
   const restart = () => {
     setIsLose(false)
@@ -26,9 +36,9 @@ const Minesweeper = () => {
 
   return (
     <Wrapper>
-      {
-        isWin && `win ${winTime}`
-      }
+      <Modal startOpen={isOpenModal} close={() => setIsOpenModal(false)}>
+        win {winTime}
+      </Modal>
       <Menu>
         <IoMdFlag />
         <span style={{ fontSize: 20, marginRight: 30 }}>
