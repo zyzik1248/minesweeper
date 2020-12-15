@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, memo } from 'react'
 
 import { FieldStyled, Content } from './Field.css'
 import { marks } from './Marks'
@@ -49,4 +49,20 @@ const Field: FunctionComponent<FieldProps> = ({
   )
 };
 
-export default Field;
+const isRender = (prevProps: any, nextProps: any): any => {
+  if (prevProps.isOpen === nextProps.isOpen && prevProps.isFlag === nextProps.isFlag
+    && prevProps.isQuestionMark === nextProps.isQuestionMark && prevProps.isLose === nextProps.isLose
+    && prevProps.value === nextProps.value && prevProps.x === nextProps.x && prevProps.y === nextProps.y) {
+    return true
+  }
+  if (nextProps.isLose && nextProps.isFlag && nextProps.value !== -1) {
+    return false;
+  }
+  if (nextProps.isLose && nextProps.value !== -1) {
+    return true;
+  }
+
+  return false;
+}
+
+export default memo(Field, isRender);
