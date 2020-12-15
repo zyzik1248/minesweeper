@@ -9,6 +9,8 @@ type BoardProps = {
   width: number;
   height: number;
   mines: number;
+  setIsLose: (isLose: boolean) => void;
+  isLose: boolean;
 }
 
 type Fields = {
@@ -22,7 +24,7 @@ interface FieldValue {
   isQuestionMark: boolean;
 }
 
-const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
+const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose, isLose }) => {
   const [fields, setFields] = useState<Fields>({ fields: [] })
   const [windowWidth, setWindowWidth] = useState(0)
   const [windowHeight, setWindowHeight] = useState(0)
@@ -62,6 +64,9 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
     if (x >= 0 && y >= 0 && x < height && y < width && !tab[x][y].isFlag) {
       tab[x][y].isOpen = true;
       tab[x][y].isQuestionMark = false;
+      if (tab[x][y].value === -1) {
+        setIsLose(true)
+      }
       if (tab[x][y].value === 0) {
         tab = findBlank(tab, x, y);
       }
@@ -138,6 +143,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
                 isOpen={el.isOpen}
                 isFlag={el.isFlag}
                 isQuestionMark={el.isQuestionMark}
+                isLose={isLose}
                 click={click}
                 marking={marking}
               />
