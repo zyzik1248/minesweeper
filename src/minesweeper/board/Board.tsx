@@ -19,6 +19,7 @@ interface FieldValue {
   value: number;
   isOpen: boolean;
   isFlag: boolean;
+  isQuestionMark: boolean;
 }
 
 const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
@@ -51,6 +52,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
   const discoverFields = (x: number, y: number, tab: FieldValue[][]) => {
     if (x >= 0 && y >= 0 && x < height && y < width && !tab[x][y].isFlag) {
       tab[x][y].isOpen = true;
+      tab[x][y].isQuestionMark = false;
       if (tab[x][y].value === 0) {
         tab = findBlank(tab, x, y);
       }
@@ -84,6 +86,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
       }
       tab[x][y].isOpen = true;
       tab[x][y].isFlag = false;
+      tab[x][y].isQuestionMark = false;
     }
   }
 
@@ -91,11 +94,14 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
     event.preventDefault();
   }
 
-  const setFlag = (x: number, y: number) => {
+  const marking = (x: number, y: number) => {
     const tab = fields.fields;
     if (!tab[x][y].isOpen) {
       if (tab[x][y].isFlag) {
+        tab[x][y].isQuestionMark = true;
         tab[x][y].isFlag = false;
+      } else if (tab[x][y].isQuestionMark) {
+        tab[x][y].isQuestionMark = false;
       } else {
         tab[x][y].isFlag = true;
       }
@@ -119,8 +125,9 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines }) => {
                 y={y}
                 isOpen={el.isOpen}
                 isFlag={el.isFlag}
+                isQuestionMark={el.isQuestionMark}
                 click={click}
-                setFlag={setFlag}
+                marking={marking}
               />
             ))}
           </>

@@ -8,18 +8,19 @@ type FieldProps = {
   y: number;
   isOpen: boolean;
   isFlag: boolean;
+  isQuestionMark: boolean;
   click: (x: number, y: number) => void;
-  setFlag: (x: number, y: number) => void
+  marking: (x: number, y: number) => void
 }
 
-const Field: FunctionComponent<FieldProps> = ({ value, x, y, isOpen, isFlag, click, setFlag }) => {
+const Field: FunctionComponent<FieldProps> = ({ value, x, y, isOpen, isFlag, isQuestionMark, click, marking }) => {
 
   const handleClick = () => {
     click(x, y);
   }
 
   const handleFlag = () => {
-    setFlag(x, y);
+    marking(x, y);
   }
 
   return (
@@ -29,6 +30,7 @@ const Field: FunctionComponent<FieldProps> = ({ value, x, y, isOpen, isFlag, cli
     >
       {isOpen && value}
       {!isOpen && isFlag && 'x'}
+      {!isOpen && isQuestionMark && '?'}
     </FieldStyled>
   )
 };
