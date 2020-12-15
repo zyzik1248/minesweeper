@@ -8,13 +8,16 @@ import { Wrapper, Menu } from './Minesweeper.css'
 
 const Minesweeper = () => {
   const [isLose, setIsLose] = useState(false)
+  const [isWin, setIsWin] = useState(false)
+  const [winTime, setWinTime] = useState(0)
   const [isRefresh, setIsRefresh] = useState(false)
-  const [flags, setFlags] = useState(99)
+  const [flags, setFlags] = useState(10)
 
   const restart = () => {
     setIsLose(false)
-    setFlags(99)
+    setFlags(10)
     setIsRefresh(true)
+    setIsWin(false)
 
     setTimeout(() => {
       setIsRefresh(false)
@@ -23,6 +26,9 @@ const Minesweeper = () => {
 
   return (
     <Wrapper>
+      {
+        isWin && `win ${winTime}`
+      }
       <Menu>
         <IoMdFlag />
         <span style={{ fontSize: 20, marginRight: 30 }}>
@@ -35,6 +41,9 @@ const Minesweeper = () => {
         }
         <Timer
           isRefresh={isRefresh}
+          isWin={isWin}
+          setWinTime={setWinTime}
+          isLose={isLose}
         />
       </Menu>
       {
@@ -42,10 +51,12 @@ const Minesweeper = () => {
           <Board
             width={30}
             height={16}
-            mines={99}
+            mines={10}
             setFlags={setFlags}
             setIsLose={setIsLose}
             isLose={isLose}
+            setIsWin={setIsWin}
+            isWin={isWin}
           /> : null
       }
     </Wrapper>

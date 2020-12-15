@@ -3,9 +3,12 @@ import { FiClock } from 'react-icons/fi'
 
 type TimerProps = {
   isRefresh: boolean
+  isWin: boolean
+  setWinTime: (time: number) => void
+  isLose: boolean
 }
 
-const Timer: FunctionComponent<TimerProps> = ({ isRefresh }) => {
+const Timer: FunctionComponent<TimerProps> = ({ isRefresh, isWin, setWinTime, isLose }) => {
   let [time, setTime] = useState(0);
 
   const intervalID = useRef(0);
@@ -33,9 +36,19 @@ const Timer: FunctionComponent<TimerProps> = ({ isRefresh }) => {
     if (isRefresh) {
       stopInterval();
     } else {
-      startInterval();
+      startInterval()
     }
   }, [isRefresh]);
+
+  useEffect(() => {
+    if (isWin) {
+      clearInterval(intervalID.current);
+      setWinTime(time)
+    }
+    if (isLose) {
+      clearInterval(intervalID.current);
+    }
+  }, [isWin, isLose]);
 
   return (
     <>

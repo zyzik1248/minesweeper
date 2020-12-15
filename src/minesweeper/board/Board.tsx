@@ -12,6 +12,8 @@ type BoardProps = {
   setFlags: (flags: number) => void;
   setIsLose: (isLose: boolean) => void;
   isLose: boolean;
+  setIsWin: (isWin: boolean) => void;
+  isWin: boolean;
 }
 
 type Fields = {
@@ -25,7 +27,9 @@ interface FieldValue {
   isQuestionMark: boolean;
 }
 
-const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setFlags, setIsLose, isLose }) => {
+const Board: FunctionComponent<BoardProps> = ({
+  height, width, mines, setFlags, setIsLose, isLose, setIsWin, isWin
+}) => {
   const [fields, setFields] = useState<Fields>({ fields: [] })
   const [windowWidth, setWindowWidth] = useState(0)
   const [windowHeight, setWindowHeight] = useState(0)
@@ -39,6 +43,23 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setFlags, 
   const setScreenSize = () => {
     setWindowWidth(window.innerWidth);
     setWindowHeight(window.innerHeight);
+  }
+
+  const checkFalgsAndFinish = () => {
+    let isWIn = true;
+    let flags = mines;
+    for (let i = 0; i < height; i++) {
+      for (let j = 0; j < width; j++) {
+        if (fields.fields[i][j].value !== -1 && !fields.fields[i][j].isOpen) {
+          isWIn = false;
+        }
+        if (fields.fields[i][j].isFlag) {
+          flags--;
+        }
+      }
+    }
+    setFlags(flags)
+    setIsWin(isWIn)
   }
 
   const click = (x: number, y: number) => {
@@ -60,7 +81,7 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setFlags, 
         }
       }
       setFields({ fields: tab })
-      setFlags(detectFlag())
+      checkFalgsAndFinish();
     }
   }
 
