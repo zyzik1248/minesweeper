@@ -1,17 +1,27 @@
 import React, { FunctionComponent } from 'react'
 
+import { FieldStyled } from './Field.css'
+
 type FieldProps = {
   value: number;
   x: number;
   y: number;
+  isOpen: boolean;
+  click: (x: number, y: number) => void;
 }
 
-const Field: FunctionComponent<FieldProps> = ({ value, x, y }) => {
+const Field: FunctionComponent<FieldProps> = ({ value, x, y, isOpen, click }) => {
+
+  const handleClick = () => {
+    click(x, y);
+  }
 
   return (
-    <div style={{border: '1px solid black'}}>
-      {value}
-    </div>
+    <FieldStyled
+      onClick={handleClick}
+    >
+      {isOpen && value}
+    </FieldStyled>
   )
 };
 
