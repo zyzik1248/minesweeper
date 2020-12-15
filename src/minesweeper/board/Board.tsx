@@ -47,14 +47,16 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose,
         discoverFields(x, y, tab)
       }
       else {
-        discoverFields(x - 1, y + 1, tab)
-        discoverFields(x - 1, y, tab)
-        discoverFields(x - 1, y - 1, tab)
-        discoverFields(x, y + 1, tab)
-        discoverFields(x, y - 1, tab)
-        discoverFields(x + 1, y + 1, tab)
-        discoverFields(x + 1, y, tab)
-        discoverFields(x + 1, y - 1, tab)
+        if (detectFlags(x, y, tab)) {
+          discoverFields(x - 1, y + 1, tab)
+          discoverFields(x - 1, y, tab)
+          discoverFields(x - 1, y - 1, tab)
+          discoverFields(x, y + 1, tab)
+          discoverFields(x, y - 1, tab)
+          discoverFields(x + 1, y + 1, tab)
+          discoverFields(x + 1, y, tab)
+          discoverFields(x + 1, y - 1, tab)
+        }
       }
       setFields({ fields: tab })
     }
@@ -71,6 +73,20 @@ const Board: FunctionComponent<BoardProps> = ({ height, width, mines, setIsLose,
         tab = findBlank(tab, x, y);
       }
     }
+  }
+
+  const detectFlags = (x: number, y: number, tab: FieldValue[][]): boolean => {
+    let count: number = 0;
+    x + 1 < height && y + 1 < width && tab[x + 1][y + 1].isFlag && count++;
+    x + 1 < height && tab[x + 1][y].isFlag && count++;
+    x + 1 < height && y - 1 >= 0 && tab[x + 1][y - 1].isFlag && count++;
+    y + 1 < width && tab[x][y + 1].isFlag && count++;
+    y - 1 >= 0 && tab[x][y - 1].isFlag && count++;
+    x - 1 >= 0 && y + 1 < width && tab[x - 1][y + 1].isFlag && count++;
+    x - 1 >= 0 && tab[x - 1][y].isFlag && count++;
+    x - 1 >= 0 && y - 1 >= 0 && tab[x - 1][y - 1].isFlag && count++;
+
+    return tab[x][y].value == count;
   }
 
   const findBlank = (tab: FieldValue[][], x: number, y: number): FieldValue[][] => {
