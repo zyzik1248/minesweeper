@@ -8,6 +8,7 @@ import { BiSmile, BiSad } from 'react-icons/bi'
 import { Wrapper, Menu } from './Minesweeper.css'
 import Modal from './../components/modal/Modal'
 import { RootState } from './../reducers/index'
+import WinModal from './../components/winModal/WinModal'
 
 const Minesweeper = () => {
   const selectorParameters = useSelector((state: RootState) => state.gameParameters)
@@ -51,7 +52,14 @@ const Minesweeper = () => {
   return (
     <Wrapper>
       <Modal startOpen={isOpenModal} close={() => setIsOpenModal(false)}>
-        win {winTime}
+        <WinModal
+          time={winTime}
+          width={width}
+          height={height}
+          mines={mines}
+          level={selectorParameters.level}
+          closeModal={() => setIsOpenModal(false)}
+        />
       </Modal>
       <Menu>
         <IoMdFlag />
