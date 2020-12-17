@@ -31,3 +31,13 @@ export const Index = styled.div`
   font-size: 20px;
   transform: translateX(-100%);
 `
+
+export const TableTitleStyled = styled.div`
+  width: 50%;
+  text-align: center;
+  margin-top: 35px;
+`
+
+export const Hr = styled.hr`
+  color: #66ccff;
+`
