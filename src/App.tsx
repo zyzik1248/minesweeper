@@ -3,11 +3,13 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Minesweeper from './pages/Minesweeper'
 import MainPage from './pages/MainPage'
-import Score from './pages/Score';
+import Score from './pages/Score'
+import Settings from './components/settings/Settings'
 
 const App = () => {
   return (
     <div>
+      <Settings />
       <BrowserRouter>
         <Switch>
           <Route exact path='/' component={MainPage} />
