@@ -1,4 +1,22 @@
 {
   "winners": [
+    {
+      "time": 23,
+      "name": "gracz1",
+      "width": 8,
+      "height": 8,
+      "mines": 10,
+      "level": 0,
+      "id": 1
+    },
+    {
+      "time": 27,
+      "name": "gracz2",
+      "width": 8,
+      "height": 8,
+      "mines": 10,
+      "level": 0,
+      "id": 2
+    }
   ]
 }
