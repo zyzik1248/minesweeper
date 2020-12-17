@@ -22,9 +22,9 @@ const Accordion: FunctionComponent<AccordionProps> = ({ children, title }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper onClick={handleOpen}>
         {title}
-        <AccordionButton onClick={handleOpen} isDown={isDown} isUp={isUp}/>
+        <AccordionButton isDown={isDown} isUp={isUp}/>
       </Wrapper>
       <Body isUp={isUp} isDown={isDown}>
         {children}
