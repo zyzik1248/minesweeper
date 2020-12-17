@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Gear from './../../assets/gear.png'
 
 export const GearButton = styled.button`
@@ -13,6 +13,16 @@ export const GearButton = styled.button`
   background-repeat: no-repeat; 
   background-size: contain;
   cursor: pointer;
+
+  @media only screen and (max-width: 400px) {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media only screen and (max-width: 340px) {
+    width: 60px;
+    height: 60px;
+  }
 `
 
 export const Wrapper = styled.form`
@@ -104,6 +114,69 @@ export const RadioController = styled.div`
   label:nth-child(4n){
     input:checked ~ span {
       background-color: #fc03f4;
+    }
+  }
+`
+
+export const RadioControllerTheme = styled.div`
+  label{
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  span {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+
+  :hover input ~ span{
+    background-color: #ccc;
+  }
+
+  span:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  & input:checked ~ span:after {
+    display: block;
+  }
+  }
+
+  label:nth-child(3n-2){
+    input:checked ~ span {
+      background-color: #3e67ce;
+    }
+  }
+
+  label:nth-child(3n-1){
+    input:checked ~ span {
+      background-color: #1C951C;
+    }
+  }
+
+  label:nth-child(3n){
+    input:checked ~ span {
+      background-color: #FF9999;
     }
   }
 `
@@ -223,68 +296,5 @@ export const SubmitButton = styled.button`
   :hover{
     cursor: pointer;
     background-color: #1D85D4;
-  }
-`
-
-export const RadioControllerTheme = styled.div`
-  label{
-    display: block;
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 16px;
-    cursor: pointer;
-    font-size: 18px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  span {
-    position: absolute;
-    top: 2px;
-    left: 0;
-    height: 16px;
-    width: 16px;
-    background-color: #eee;
-    border-radius: 50%;
-  }
-
-  :hover input ~ span{
-    background-color: #ccc;
-  }
-
-  span:after {
-    content: "";
-    position: absolute;
-    display: none;
-  }
-
-  & input:checked ~ span:after {
-    display: block;
-  }
-  }
-
-  label:nth-child(3n-2){
-    input:checked ~ span {
-      background-color: #3e67ce;
-    }
-  }
-
-  label:nth-child(3n-1){
-    input:checked ~ span {
-      background-color: #1C951C;
-    }
-  }
-
-  label:nth-child(3n){
-    input:checked ~ span {
-      background-color: #FF9999;
-    }
   }
 `

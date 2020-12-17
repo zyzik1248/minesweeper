@@ -7,7 +7,7 @@ export interface Score {
   id: number
 }
 
-const Score: FunctionComponent<Score> = ({ name, time, id }) => {
+const SingleScore: FunctionComponent<Score> = ({ name, time, id }) => {
   return (
     <SingleWinner>
       <Row>
@@ -21,4 +21,4 @@ const Score: FunctionComponent<Score> = ({ name, time, id }) => {
   )
 }
 
-export default Score;
+export default SingleScore;

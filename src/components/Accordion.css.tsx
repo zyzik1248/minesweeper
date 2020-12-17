@@ -39,7 +39,6 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
 `
 
 export const Body = styled.div`
@@ -47,6 +46,10 @@ export const Body = styled.div`
   margin: 0 auto;
   overflow-y: hidden;
 
+  @media only screen and (max-width: 610px) {
+    width: 100%;
+  }
+  
   ${(props: Props) => !props.isDown && !props.isUp &&
     css`
       max-height: 0px;
@@ -69,4 +72,8 @@ export const Body = styled.div`
 export const AccordionButton = styled(RiArrowDownSLine)`
   font-size: 32px;
   transform: ${(props : Props)=>props.isUp ? `rotate(180deg)` : `rotate(0deg)`};
+
+  :hover{
+    cursor: pointer;
+  }
 `
