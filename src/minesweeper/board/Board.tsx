@@ -4,6 +4,7 @@ import Field from './../field/Field'
 import { BoardStyled, Wrapper } from './Board.css'
 import { generateFields } from './boardGenerator'
 import { Position } from './position'
+import { Themes } from './../../reducers/gameTheme/types'
 
 type BoardProps = {
   width: number;
@@ -13,7 +14,7 @@ type BoardProps = {
   setIsLose: (isLose: boolean) => void;
   isLose: boolean;
   setIsWin: (isWin: boolean) => void;
-  isWin: boolean;
+  theme: Themes;
 }
 
 type Fields = {
@@ -28,7 +29,7 @@ interface FieldValue {
 }
 
 const Board: FunctionComponent<BoardProps> = ({
-  height, width, mines, setFlags, setIsLose, isLose, setIsWin, isWin
+  height, width, mines, setFlags, setIsLose, isLose, setIsWin, theme
 }) => {
   const [fields, setFields] = useState<Fields>({ fields: [] })
   const [windowWidth, setWindowWidth] = useState(0)
@@ -203,6 +204,7 @@ const Board: FunctionComponent<BoardProps> = ({
                 isLose={isLose}
                 click={click}
                 marking={marking}
+                theme={theme}
               />
             ))}
           </>

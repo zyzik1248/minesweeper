@@ -12,6 +12,7 @@ import WinModal from './../components/winModal/WinModal'
 
 const Minesweeper = () => {
   const selectorParameters = useSelector((state: RootState) => state.gameParameters)
+  const selectorThemes = useSelector((state: RootState) => state.gameTheme)
 
   const [width, setWidth] = useState(selectorParameters.width)
   const [height, setHeight] = useState(selectorParameters.height)
@@ -22,6 +23,7 @@ const Minesweeper = () => {
   const [isRefresh, setIsRefresh] = useState(false)
   const [flags, setFlags] = useState(selectorParameters.mines)
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [theme, setTheme] = useState(selectorThemes.theme)
 
   useEffect(() => {
     if (isWin) {
@@ -35,8 +37,9 @@ const Minesweeper = () => {
     setWidth(selectorParameters.width)
     setHeight(selectorParameters.height)
     setMines(selectorParameters.mines)
+    setTheme(selectorThemes.theme)
     restart();
-  }, [selectorParameters]);
+  }, [selectorParameters, selectorThemes]);
 
   const restart = () => {
     setIsLose(false)
@@ -88,7 +91,7 @@ const Minesweeper = () => {
             setIsLose={setIsLose}
             isLose={isLose}
             setIsWin={setIsWin}
-            isWin={isWin}
+            theme={theme}
           /> : null
       }
     </Wrapper>

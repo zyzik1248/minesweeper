@@ -2,6 +2,7 @@ import React, { FunctionComponent, memo } from 'react'
 
 import { FieldStyled, Content } from './Field.css'
 import { marks } from './Marks'
+import { Themes } from '../../reducers/gameTheme/types';
 
 type FieldProps = {
   value: number;
@@ -13,10 +14,11 @@ type FieldProps = {
   isLose: boolean;
   click: (x: number, y: number) => void;
   marking: (x: number, y: number) => void
+  theme: Themes
 }
 
 const Field: FunctionComponent<FieldProps> = ({
-  value, x, y, isOpen, isFlag, isQuestionMark, isLose, click, marking
+  value, x, y, isOpen, isFlag, isQuestionMark, isLose, click, marking, theme
 }) => {
 
   const handleClick = () => {
@@ -36,14 +38,15 @@ const Field: FunctionComponent<FieldProps> = ({
       isOpen={isOpen}
       onClick={handleClick}
       onContextMenu={handleFlag}
+      colorTheme={theme}
     >
       <Content>
-        {isOpen && value !== 0 && !isFlag && value !== -1 && marks(value + '')}
-        {isOpen && !isFlag && value === -1 && marks('active_bomb')}
-        {isLose && !isOpen && !isFlag && value === -1 && marks('bomb')}
-        {isFlag && !(isLose && value !== -1) && marks('flag')}
-        {isLose && isFlag && value !== -1 && marks('active_flag')}
-        {isQuestionMark && marks('question')}
+        {isOpen && value !== 0 && !isFlag && value !== -1 && marks(theme, value + '')}
+        {isOpen && !isFlag && value === -1 && marks(theme, 'active_bomb')}
+        {isLose && !isOpen && !isFlag && value === -1 && marks(theme, 'bomb')}
+        {isFlag && !(isLose && value !== -1) && marks(theme, 'flag')}
+        {isLose && isFlag && value !== -1 && marks(theme, 'active_flag')}
+        {isQuestionMark && marks(theme, 'question')}
       </Content>
     </FieldStyled>
   )

@@ -1,14 +1,18 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
+
+import { Themes } from '../../reducers/gameTheme/types'
+import {color} from './Marks'
 
 interface props {
   isOpen: boolean
+  colorTheme: Themes
 }
 
 export const FieldStyled = styled.div<props>`
   position: relative;
   margin: 1px;
   border-radius: 15%;
-  background-color: ${(props: props) => props.isOpen ? `gainsboro` : `#3e67ce`};
+  background-color: ${(props: props) => props.isOpen ? `gainsboro` : css`${color(props.colorTheme)}`};
   -webkit-touch-callout: none;
     -webkit-user-select: none;
      -khtml-user-select: none;
