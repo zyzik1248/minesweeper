@@ -10,6 +10,7 @@ interface LevelProps {
 const Level: FunctionComponent<LevelProps> = ({ values, handleChange }) => {
   return (
     <Body>
+      <h1>Level</h1>
       <RadioController>
         <label>{Levels[Levels.beginner]}
           <input
