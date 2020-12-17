@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { RadioControllerTheme, Body } from './Settings.css'
+import Accordion from './../Accordion'
 import { Themes } from './../../reducers/gameTheme/types'
 
 interface ThemeProps {
@@ -9,8 +10,8 @@ interface ThemeProps {
 
 const Theme: FunctionComponent<ThemeProps> = ({ values, handleChange }) => {
   return (
+    <Accordion title="theme">
       <Body>
-        <h1>Theme</h1>
         <RadioControllerTheme>
           <label>{Themes[Themes.blue]}
             <input
@@ -44,6 +45,7 @@ const Theme: FunctionComponent<ThemeProps> = ({ values, handleChange }) => {
           </label>
         </RadioControllerTheme>
       </Body>
+    </Accordion>
   )
 }
 
