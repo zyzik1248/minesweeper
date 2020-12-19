@@ -38,12 +38,17 @@ const Minesweeper = () => {
     setHeight(selectorParameters.height)
     setMines(selectorParameters.mines)
     setTheme(selectorThemes.theme)
-    restart();
+    setFlags(selectorParameters.mines)
+    refresh();
   }, [selectorParameters, selectorThemes]);
 
   const restart = () => {
-    setIsLose(false)
     setFlags(selectorParameters.mines)
+    refresh()
+  }
+
+  const refresh = () => {
+    setIsLose(false)
     setIsRefresh(true)
     setIsWin(false)
 

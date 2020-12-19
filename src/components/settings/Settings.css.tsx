@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 import Gear from './../../assets/gear.png'
 
 export const GearButton = styled.button`
@@ -275,7 +275,7 @@ interface RangeValue {
   disabled: boolean
 }
 
-export const RangeValue = styled.p`
+export const RangeValueStyled = styled.p`
   margin-left: 10px;
   width: 15px;
   ${(props: RangeValue) => props.disabled &&

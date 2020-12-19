@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { RadioController, RangeStyled, RangeValue, RangeController, Body } from './Settings.css'
+import { RadioController, RangeStyled, RangeValueStyled, RangeController, Body } from './Settings.css'
 import Accordion from './../Accordion'
 import { Levels } from './../../reducers/gameParameters/types'
 
@@ -56,7 +56,7 @@ const Level: FunctionComponent<LevelProps> = ({ values, handleChange }) => {
         </RadioController>
         <RangeController>
           <RangeStyled>
-            <RangeValue disabled={values.level * 1 !== Levels.custom}>{values.width}</RangeValue>
+            <RangeValueStyled disabled={values.level * 1 !== Levels.custom}>{values.width}</RangeValueStyled>
             <input
               id="width"
               name="width"
@@ -70,7 +70,7 @@ const Level: FunctionComponent<LevelProps> = ({ values, handleChange }) => {
             <label htmlFor="width">width</label>
           </RangeStyled>
           <RangeStyled>
-            <RangeValue disabled={values.level * 1 !== Levels.custom}>{values.height}</RangeValue>
+            <RangeValueStyled disabled={values.level * 1 !== Levels.custom}>{values.height}</RangeValueStyled>
             <input
               id="height"
               name="height"
@@ -84,7 +84,7 @@ const Level: FunctionComponent<LevelProps> = ({ values, handleChange }) => {
             <label htmlFor="height">height</label>
           </RangeStyled>
           <RangeStyled>
-            <RangeValue disabled={values.level * 1 !== Levels.custom}>{values.mines}</RangeValue>
+            <RangeValueStyled disabled={values.level * 1 !== Levels.custom}>{values.mines}</RangeValueStyled>
             <input
               id="mines"
               name="mines"

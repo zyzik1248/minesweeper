@@ -25,7 +25,7 @@ const Settings = () => {
       setParameters(prevState => ({
         ...prevState,
         [name]: value,
-        ['mines']: newMines,
+        mines: newMines,
       }))
     } else {
       setParameters(prevState => ({
