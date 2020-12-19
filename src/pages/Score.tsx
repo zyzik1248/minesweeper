@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+
 import { Wrapper } from './Score.css'
 import SingleScore from './../score/SingleScore'
 import TableTitle from './../score/TableTitle'
+import { readData } from './../database/FirebaseHelper'
 
 export interface Winner {
   name: string,
@@ -10,7 +11,6 @@ export interface Winner {
   width: number,
   height: number,
   mines: number,
-  id: number,
   level: number
 }
 
@@ -37,43 +37,46 @@ const Score = () => {
   }
 
   useEffect(() => {
-    async function getWinnerApi() {
-      try {
-        const resp = await axios.get('http://localhost:3002/winners')
+    // async function getWinnerApi() {
+    //   try {
+    readData().then((d) => {
+      // console.log(d ? d : [])
+      const data: any[] = d as Winner[];
 
-        for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
 
-          const w: Winner[] = resp.data.filter((value: any) => {
-            return value.level === 2 - i;
-          }).sort((a: Winner, b: Winner) => sortByTime(a, b))
+        const w: Winner[] = data.filter((value: any) => {
+          return value.level === 2 - i;
+        }).sort((a: Winner, b: Winner) => sortByTime(a, b))
 
-          if (w.length > 0) {
-            winners.winners.push(w);
-          }
+        if (w.length > 0) {
+          winners.winners.push(w);
         }
-
-        let wCustom: Winner[] = resp.data.filter((value: Winner) => {
-          return value.level === 3;
-        }).sort((a: Winner, b: Winner) => sortCustom(a, b))
-
-        while (wCustom.length > 0) {
-          winners.winners.push(wCustom.filter((value: Winner) => {
-            return value.height === wCustom[0].height && value.width === wCustom[0].width
-              && value.mines === wCustom[0].mines
-          }).sort((a: Winner, b: Winner) => sortByTime(a, b)))
-
-          wCustom = wCustom.filter((value: Winner) => {
-            return !(value.height === wCustom[0].height && value.width === wCustom[0].width
-              && value.mines === wCustom[0].mines)
-          })
-        }
-
-        setWinners({ winners: winners.winners.slice() })
-      } catch (err) {
-        console.log(err)
       }
-    }
-    getWinnerApi()
+
+      let wCustom: Winner[] = data.filter((value: Winner) => {
+        return value.level === 3;
+      }).sort((a: Winner, b: Winner) => sortCustom(a, b))
+
+      while (wCustom.length > 0) {
+        winners.winners.push(wCustom.filter((value: Winner) => {
+          return value.height === wCustom[0].height && value.width === wCustom[0].width
+            && value.mines === wCustom[0].mines
+        }).sort((a: Winner, b: Winner) => sortByTime(a, b)))
+
+        wCustom = wCustom.filter((value: Winner) => {
+          return !(value.height === wCustom[0].height && value.width === wCustom[0].width
+            && value.mines === wCustom[0].mines)
+        })
+      }
+
+      setWinners({ winners: winners.winners.slice() })
+    })
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+    // getWinnerApi()
   }, []);
 
   return (

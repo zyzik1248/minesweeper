@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState } from 'react'
-import axios from 'axios'
+
 import { SubmitButton, Wrapper, Text, Header, Input } from './WinModal.css'
+import { writeData } from './../../database/FirebaseHelper'
 
 interface PropsWinModal {
   time: number
@@ -18,19 +19,14 @@ const WinModal: FunctionComponent<PropsWinModal> = ({ time, width, height, mines
   const save = async (event: React.FormEvent) => {
     event.preventDefault();
     if (name.length > 0) {
-      try {
-        const resp = await axios.post('http://localhost:3002/winners', {
-          time,
-          name,
-          width,
-          height,
-          mines,
-          level
-        })
-        console.log(resp.data)
-      } catch (err) {
-        console.log(err)
-      }
+      writeData({
+        time,
+        name,
+        width,
+        height,
+        mines,
+        level
+      })
       closeModal();
     } else {
       setIsError(true)
