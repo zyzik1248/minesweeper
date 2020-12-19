@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Minesweeper from './pages/Minesweeper'
 import MainPage from './pages/MainPage'
 import Score from './pages/Score'
 import Settings from './components/settings/Settings'
+import { initialDatabase, readData } from './database/FirebaseHelper'
 
 const App = () => {
+  useEffect(() => {
+    initialDatabase();
+  }, []);
+
   return (
     <div>
       <Settings />
