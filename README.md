@@ -1,10 +1,13 @@
 # Minesweeper
 
-is a single player puzzle game. The object of the game is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them, using the guidance on the number of adjacent mines in each field. The game dates from the 1960s
+A single-player puzzle game. You need to clear a rectangular board containing hidden "mines" or bombs without detonating any of them, using the guidance on the number of adjacent mines in each field. The game dates from the 1960s
 
-In Minesweeper, mines are scattered throughout a board which is divided into cells. Cells have three states: uncovered, covered and flagged. A covered cell is blank and clickable, while an uncovered cell is exposed. Flagged cells are those marked by the player to indicate a potential mine location.
+Mines are scattered throughout a board, which is divided into cells. Cells have three states:
+- covered -  blank and clickable,
+- uncovered - exposed, 
+- flagged - marked by the player to indicate a potential mine location.
 
-A player left-clicks a cell to uncover it. If a player uncovers a mined cell, the game ends. Otherwise, the uncovered cells displays either a number, indicating the quantity of mines adjacent to it, or a blank tile (or "0"), and all adjacent non-mined cells will automatically be uncovered. Right-clicking on a cell will flag it, causing a flag to appear on it. Flagged cells are still covered, and a player can first unflagged with an additional right-click 
+A player left-clicks a cell to uncover it. If a player finds a mined cell, the game ends. Otherwise, the uncovered cells display either a number, indicating the number of mines adjacent to it, or a blank tile (or "0"), and all adjacent non-mined cells will automatically be uncovered. Right-clicking on a cell will flag it, causing a flag to appear on it. Flagged cells are still covered, and a player can first unflagged with an additional right-click 
 
 To win the game, players must uncover all non-mine cells, at which point the timer is stopped.
 
