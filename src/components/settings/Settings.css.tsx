@@ -183,33 +183,57 @@ export const RadioControllerTheme = styled.div`
 
 export const RangeController = styled.div`
 div:nth-child(4n-3){
-  input::-webkit-slider-thumb,
+  input::-webkit-slider-thumb{
+    background: #fcba03;
+  }
+
+  input::-ms-thumb{
+    background: #fcba03;
+  }
+
   input::-moz-range-thumb{
-    border: none;
     background: #fcba03;
   }
 }
 
 div:nth-child(4n-2){
-  input::-webkit-slider-thumb,
+  input::-webkit-slider-thumb{
+    background: #4CAF50;
+  }
+
+  input::-ms-thumb{
+    background: #4CAF50;
+  }
+
   input::-moz-range-thumb{
-    border: none;
     background: #4CAF50;
   }
 }
 
 div:nth-child(4n-1){
-  input::-webkit-slider-thumb,
+  input::-webkit-slider-thumb{
+    background: #2196F3;
+  }
+
+  input::-ms-thumb{
+    background: #2196F3;
+  }
+
   input::-moz-range-thumb{
-    border: none;
     background: #2196F3;
   }
 }
 
 div:nth-child(4n){
-  input::-webkit-slider-thumb,
+  input::-webkit-slider-thumb{
+    background: #fc03f4;
+  }
+
+  input::-ms-thumb{
+    background: #fc03f4;
+  }
+
   input::-moz-range-thumb{
-    border: none;
     background: #fc03f4;
   }
 }
@@ -251,22 +275,37 @@ label{
     transition: opacity .2s;
   }
   
-  input::-webkit-slider-thumb{
+  input::-webkit-slider-thumb {
+    height: 16px;
+    width: 16px;
+    border: none;
     -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
     border-radius: 50%;
+  }
+
+  input::-ms-thumb{
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: none;
   }
   
   input::-moz-range-thumb{
     width: 16px;
     height: 16px;
     border-radius: 50%;
+    border: none;
   }
 
-  input:enabled::-moz-range-thumb,
   input:enabled::-webkit-slider-thumb{
+    cursor: pointer;
+  }
+
+  input:enabled::-moz-range-thumb{
+    cursor: pointer;
+  }
+
+  input:enabled::-ms-thumb{
     cursor: pointer;
   }
 `
@@ -279,7 +318,7 @@ export const RangeValueStyled = styled.p`
   margin-left: 10px;
   width: 15px;
   ${(props: RangeValue) => props.disabled &&
-  `opacity: 0.4;
+    `opacity: 0.4;
   -webkit-transition: .2s;
   transition: opacity .2s;`
   }
