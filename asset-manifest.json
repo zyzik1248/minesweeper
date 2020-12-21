@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "https://zyzik1248.github.io/minesweeper/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "https://zyzik1248.github.io/minesweeper/static/js/main.55b90077.chunk.js",
-    "main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/main.55b90077.chunk.js.map",
+    "main.js": "https://zyzik1248.github.io/minesweeper/static/js/main.09f6147f.chunk.js",
+    "main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/main.09f6147f.chunk.js.map",
     "runtime-main.js": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.64476e43.js",
     "runtime-main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.64476e43.js.map",
     "static/js/2.ecf394b4.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/2.ecf394b4.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.64476e43.js",
     "static/js/2.ecf394b4.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.55b90077.chunk.js"
+    "static/js/main.09f6147f.chunk.js"
   ]
 }
