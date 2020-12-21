@@ -16,9 +16,8 @@ export const BoardStyled = styled.div<props>`
     ` :
     `grid-template-columns: repeat(${props.width}, ${props.windowWidth * (95 / props.width) / 100 < 30 ? `30px` : `1fr`});
     grid-template-rows: repeat(${props.height}, ${props.windowWidth * (95 / props.width) / 100 < 30 ? `30px` : `${95 / props.width}vw`});
-    `
+    width: 100%;`
   }
-  width: 100%;
   height: 100%;
   grid-gap: 0px;
   letter-spacing: 0px;
