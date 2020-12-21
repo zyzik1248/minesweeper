@@ -71,7 +71,7 @@ const Minesweeper = () => {
       </Modal>
       <Menu>
         <IoMdFlag />
-        <span style={{ fontSize: 20, marginRight: 30 }}>
+        <span style={{display: 'inline-block', width: 15, fontSize: 20, marginRight: 30}}>
           {flags}
         </span>
         {

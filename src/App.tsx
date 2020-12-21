@@ -5,11 +5,12 @@ import Minesweeper from './pages/Minesweeper'
 import MainPage from './pages/MainPage'
 import Score from './pages/Score'
 import Settings from './components/settings/Settings'
+import { Wrapper } from './App.css'
 
 const App = () => {
 
   return (
-    <div>
+    <Wrapper>
       <Settings />
       <HashRouter>
         <Switch>
@@ -18,7 +19,7 @@ const App = () => {
           <Route exact path='/score' component={Score} />
         </Switch>
       </HashRouter>
-    </div>
+    </Wrapper>
   );
 }
 
