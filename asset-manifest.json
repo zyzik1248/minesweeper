@@ -1,23 +1,32 @@
 {
   "files": {
+    "static/js/0.c35af8da.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/0.c35af8da.chunk.js",
+    "static/js/0.c35af8da.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/0.c35af8da.chunk.js.map",
     "main.css": "https://zyzik1248.github.io/minesweeper/static/css/main.2ae47eeb.chunk.css",
-    "main.js": "https://zyzik1248.github.io/minesweeper/static/js/main.09f6147f.chunk.js",
-    "main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/main.09f6147f.chunk.js.map",
-    "runtime-main.js": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.64476e43.js",
-    "runtime-main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.64476e43.js.map",
-    "static/js/2.ecf394b4.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/2.ecf394b4.chunk.js",
-    "static/js/2.ecf394b4.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/2.ecf394b4.chunk.js.map",
+    "main.js": "https://zyzik1248.github.io/minesweeper/static/js/main.1573f148.chunk.js",
+    "main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/main.1573f148.chunk.js.map",
+    "runtime-main.js": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.1889e043.js",
+    "runtime-main.js.map": "https://zyzik1248.github.io/minesweeper/static/js/runtime-main.1889e043.js.map",
+    "static/js/3.ee422b7b.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/3.ee422b7b.chunk.js",
+    "static/js/3.ee422b7b.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/3.ee422b7b.chunk.js.map",
+    "static/js/4.e7ba47f1.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/4.e7ba47f1.chunk.js",
+    "static/js/4.e7ba47f1.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/4.e7ba47f1.chunk.js.map",
+    "static/js/5.1012ee46.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/5.1012ee46.chunk.js",
+    "static/js/5.1012ee46.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/5.1012ee46.chunk.js.map",
+    "static/js/6.196d05f7.chunk.js": "https://zyzik1248.github.io/minesweeper/static/js/6.196d05f7.chunk.js",
+    "static/js/6.196d05f7.chunk.js.map": "https://zyzik1248.github.io/minesweeper/static/js/6.196d05f7.chunk.js.map",
     "index.html": "https://zyzik1248.github.io/minesweeper/index.html",
     "static/css/main.2ae47eeb.chunk.css.map": "https://zyzik1248.github.io/minesweeper/static/css/main.2ae47eeb.chunk.css.map",
-    "static/js/2.ecf394b4.chunk.js.LICENSE.txt": "https://zyzik1248.github.io/minesweeper/static/js/2.ecf394b4.chunk.js.LICENSE.txt",
+    "static/js/0.c35af8da.chunk.js.LICENSE.txt": "https://zyzik1248.github.io/minesweeper/static/js/0.c35af8da.chunk.js.LICENSE.txt",
+    "static/js/3.ee422b7b.chunk.js.LICENSE.txt": "https://zyzik1248.github.io/minesweeper/static/js/3.ee422b7b.chunk.js.LICENSE.txt",
     "static/media/bac.04a3b72d.png": "https://zyzik1248.github.io/minesweeper/static/media/bac.04a3b72d.png",
     "static/media/button.d082d4e6.png": "https://zyzik1248.github.io/minesweeper/static/media/button.d082d4e6.png",
     "static/media/gear.e9ab6a42.png": "https://zyzik1248.github.io/minesweeper/static/media/gear.e9ab6a42.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.64476e43.js",
-    "static/js/2.ecf394b4.chunk.js",
+    "static/js/runtime-main.1889e043.js",
+    "static/js/3.ee422b7b.chunk.js",
     "static/css/main.2ae47eeb.chunk.css",
-    "static/js/main.09f6147f.chunk.js"
+    "static/js/main.1573f148.chunk.js"
   ]
 }
