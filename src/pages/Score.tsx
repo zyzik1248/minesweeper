@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
 import { Wrapper } from './Score.css'
-import SingleScore from './../score/SingleScore'
-import TableTitle from './../score/TableTitle'
 import { readData } from './../database/FirebaseHelper'
+import Loading from './../components/Loading'
+import TableTitle from './../score/TableTitle'
+import SingleScore from './../score/SingleScore'
 
 export interface Winner {
   name: string,
@@ -20,6 +21,8 @@ export interface Winners {
 
 const Score = () => {
   const [winners, setWinners] = useState<Winners>({ winners: [] })
+  const [isEmpty, setIsEmpty] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   const sortByTime = (a: Winner, b: Winner): number => {
     return a.time - b.time
@@ -37,45 +40,56 @@ const Score = () => {
   }
 
   useEffect(() => {
-    if (winners.winners.length === 0) {
-      readData().then((d) => {
-        const data: any[] = d as Winner[];
+    setTimeout(() => {
+      if (winners.winners.length === 0) {
+        readData().then((d) => {
+          const data: Winner[] = d as Winner[];
 
-        for (let i = 0; i < 3; i++) {
+          for (let i = 0; i < 3; i++) {
 
-          const w: Winner[] = data.filter((value: any) => {
-            return value.level === 2 - i;
-          }).sort((a: Winner, b: Winner) => sortByTime(a, b))
+            const w: Winner[] = data.filter((value: any) => {
+              return value.level === 2 - i;
+            }).sort((a: Winner, b: Winner) => sortByTime(a, b))
 
-          if (w.length > 0) {
-            winners.winners.push(w);
+            if (w.length > 0) {
+              winners.winners.push(w);
+            }
           }
-        }
 
-        let wCustom: Winner[] = data.filter((value: Winner) => {
-          return value.level === 3;
-        }).sort((a: Winner, b: Winner) => sortCustom(a, b))
+          let wCustom: Winner[] = data.filter((value: Winner) => {
+            return value.level === 3;
+          }).sort((a: Winner, b: Winner) => sortCustom(a, b))
 
-        while (wCustom.length > 0) {
-          winners.winners.push(wCustom.filter((value: Winner) => {
-            return value.height === wCustom[0].height && value.width === wCustom[0].width
-              && value.mines === wCustom[0].mines
-          }).sort((a: Winner, b: Winner) => sortByTime(a, b)))
+          while (wCustom.length > 0) {
+            winners.winners.push(wCustom.filter((value: Winner) => {
+              return value.height === wCustom[0].height && value.width === wCustom[0].width
+                && value.mines === wCustom[0].mines
+            }).sort((a: Winner, b: Winner) => sortByTime(a, b)))
 
-          wCustom.filter((value: Winner) => {
-            return !(value.height === wCustom[0].height && value.width === wCustom[0].width
-              && value.mines === wCustom[0].mines)
-          })
-        }
+            wCustom.filter((value: Winner) => {
+              return !(value.height === wCustom[0].height && value.width === wCustom[0].width
+                && value.mines === wCustom[0].mines)
+            })
+          }
 
-        setWinners({ winners: winners.winners })
-      })
-    }
+          setWinners({ winners: winners.winners })
+          setIsEmpty(data.length === 0)
+          setIsLoading(false)
+        })
+      }
+    }, 1000);
   }, [winners]);
 
   return (
     <Wrapper>
+      <Loading invisible={!isLoading} />
       <h1>Score</h1>
+      {
+        isEmpty &&
+        <div>
+          there are no any winners
+        </div>
+      }
       {winners.winners.map((row) => (
         <>
           <TableTitle

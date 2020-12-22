@@ -9,6 +9,7 @@ import { Wrapper, Menu } from './Minesweeper.css'
 import Modal from './../components/modal/Modal'
 import { RootState } from './../reducers/index'
 import WinModal from './../components/winModal/WinModal'
+import Loading from './../components/Loading'
 
 const Minesweeper = () => {
   const selectorParameters = useSelector((state: RootState) => state.gameParameters)
@@ -59,6 +60,9 @@ const Minesweeper = () => {
 
   return (
     <Wrapper>
+      <Loading
+        invisible={!isRefresh}
+      />
       <Modal startOpen={isOpenModal} close={() => setIsOpenModal(false)}>
         <WinModal
           time={winTime}
@@ -71,7 +75,7 @@ const Minesweeper = () => {
       </Modal>
       <Menu>
         <IoMdFlag />
-        <span style={{display: 'inline-block', width: 15, fontSize: 20, marginRight: 30}}>
+        <span style={{ display: 'inline-block', width: 15, fontSize: 20, marginRight: 30 }}>
           {flags}
         </span>
         {
