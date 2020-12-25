@@ -92,6 +92,7 @@ const Board: FunctionComponent<BoardProps> = ({
       tab[x][y].isQuestionMark = false;
       if (tab[x][y].value === -1) {
         setIsLose(true)
+        window.navigator.vibrate(100);
       }
       if (tab[x][y].value === 0) {
         tab = findBlank(tab, x, y);
