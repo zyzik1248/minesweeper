@@ -159,6 +159,7 @@ const Board: FunctionComponent<BoardProps> = ({
   const marking = (x: number, y: number) => {
     const tab = fields.fields;
     let flags = detectFlag();
+    window.navigator.vibrate(100);
     if (!tab[x][y].isOpen) {
       if (tab[x][y].isFlag) {
         tab[x][y].isQuestionMark = true;
