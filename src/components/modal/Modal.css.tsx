@@ -44,7 +44,7 @@ export const Content = styled.div`
   position: absolute;
   background-color: white;
   width: 70%;
-  max-height: 80%;
+  max-height: 70%;
   margin: auto;
   padding: 20px;
   top: 0; 

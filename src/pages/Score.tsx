@@ -66,10 +66,15 @@ const Score = () => {
                 && value.mines === wCustom[0].mines
             }).sort((a: Winner, b: Winner) => sortByTime(a, b)))
 
-            wCustom.filter((value: Winner) => {
+            wCustom.splice(0, wCustom.length);
+            const arr = wCustom.filter((value: Winner) => {
               return !(value.height === wCustom[0].height && value.width === wCustom[0].width
                 && value.mines === wCustom[0].mines)
             })
+
+            for(let i=0; i<arr.length; i++){
+              wCustom[i] = arr[i]
+            }
           }
 
           setWinners({ winners: winners.winners })
